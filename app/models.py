@@ -1,27 +1,44 @@
 #1.✅ Build out Model
-# Import from sqlalchemy: PrimaryKeyConstraint, Column, String, Integer
-# Import from sqlalchemy.ext.declarative, declarative_base  
+from sqlalchemy import PrimaryKeyConstraint, Column, String, Integer
+from sqlalchemy.ext.declarative import declarative_base  
 
 #1.a ✅ Initialize declarative_base and save it to a variable called Base
-
+Base=declarative_base()
 
 #1.b ✅ Create a class Pet that inherits from Base
+class Pet(Base):
 
+    def __init__(self,name,species,breed,temperament,owner_id):
+        self.id=None
+        self.name=name
+        self.species=species
+        self.breed=breed
+        self.temperament=temperament
+        self.owner_id=owner_id
+    
     # Set the "__tablename__" to 'pets
+    __tablename__="pets"
     # Add table args for a primary key constraint based off the id
 
     #Create the following columns
     # id -> type integer
+    id=Column(Integer,primary_key=True)
     # name -> type string
+    name=Column(String,nullable=False)
     # species -> type string
+    species=Column(String,nullable=False)
     # breed -> type string
+    breed=Column(String,nullable=False)
     # temperament -> type string
+    temperament=Column(String,nullable=False)
     # owner_id -> integer 
+    owner_id=Column(Integer)
 
 
     
     #add a __repr__ method that returns a string containing the id, name, species, breed and temperament of our class
-    
+    def __repr__(self):
+        return f"id={self.id} name={self.name} species={self.species} breed={self.breed} temperament={self.temperament} owner_id={self.owner_id}"
 
 #Note: Nothing further goes in this file.
 # The following will generate a number of folders and files
